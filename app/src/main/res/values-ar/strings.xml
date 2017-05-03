@@ -4,4 +4,9 @@
     <string name="About">عن الشركة</string>
     <string name="branch">فروعنا</string>
     <string name="contactus">اتصل بنا</string>
+
+
+    <string name="height">طولى</string>
+    <string name="width">عرضى</string>
+
 </resources>

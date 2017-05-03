@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.royalideas.fragments.Sections;
+import com.royalideas.helper.Utils;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView= (NavigationView) findViewById(R.id.navigation);
         navigationView.setItemIconTintList(null);
         ButterKnife.bind(this);
+        Utils.goToFragment(this,new Sections(),null,null);
     }
 
     @OnClick(R.id.menu)
