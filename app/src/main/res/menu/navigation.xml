@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main"
+        android:title="@string/Main"
+        android:icon="@mipmap/home">
+    </item>
+    <item
+        android:id="@+id/about"
+        android:title="@string/About"
+        android:icon="@mipmap/info">
+    </item>
+    <item
+        android:id="@+id/branch"
+        android:title="@string/branch"
+        android:icon="@mipmap/map">
+    </item>
+    <item
+        android:id="@+id/contactus"
+        android:title="@string/contactus"
+        android:icon="@mipmap/phone">
+    </item>
+</menu>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">رويال ايدياز</string>
+    <string name="Main">الرئيسية</string>
+    <string name="About">عن الشركة</string>
+    <string name="branch">فروعنا</string>
+    <string name="contactus">اتصل بنا</string>
+</resources>
