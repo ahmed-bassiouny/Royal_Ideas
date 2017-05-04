@@ -6,4 +6,5 @@ package com.royalideas.helper;
 
 public class Information {
     public static String products_categories ="http://www.ri.gallery/wp-json/wp/v2/products_categories";
+    public static String MultiProducts ="http://www.ri.gallery/wp-json/wp/v2/products_id?product_id=3";
 }

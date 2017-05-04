@@ -1,17 +1,16 @@
 package com.royalideas.adapter;
 
-import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.royalideas.R;
-import com.squareup.picasso.Picasso;
+import com.royalideas.fragments.ProductFragment;
+import com.royalideas.helper.Utils;
 
 import java.util.ArrayList;
 
@@ -21,11 +20,11 @@ import java.util.ArrayList;
 
 public class WidthAdapterSection extends RecyclerView.Adapter<WidthAdapterSection.CutomViewHolder> {
     ArrayList<ProductsCategories> myarraylist;
-    Context context;
+    FragmentActivity fragmentActivity;
     // constructor to send data and set it global
-    public WidthAdapterSection(ArrayList<ProductsCategories> myarraylist,Context context){
+    public WidthAdapterSection(ArrayList<ProductsCategories> myarraylist,FragmentActivity fragmentActivity){
         this.myarraylist=myarraylist;
-        this.context=context;
+        this.fragmentActivity=fragmentActivity;
     }
     @Override
     public WidthAdapterSection.CutomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,6 +37,12 @@ public class WidthAdapterSection extends RecyclerView.Adapter<WidthAdapterSectio
     public void onBindViewHolder(WidthAdapterSection.CutomViewHolder holder, int position) {
 
         holder.nameproduct.setText(myarraylist.get(position).name);
+        holder.row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.goToFragment(fragmentActivity,new ProductFragment(),"Back To Section",null);
+            }
+        });
     }
 
     @Override
@@ -47,9 +52,11 @@ public class WidthAdapterSection extends RecyclerView.Adapter<WidthAdapterSectio
     class CutomViewHolder extends RecyclerView.ViewHolder{
         //inner class to link java with item in layout
         TextView nameproduct;
+        RelativeLayout row;
         public CutomViewHolder(View view){
             super(view);
             this.nameproduct=(TextView)view.findViewById(R.id.nameproduct);
+            this.row=(RelativeLayout)view.findViewById(R.id.row);
         }
     }
 }

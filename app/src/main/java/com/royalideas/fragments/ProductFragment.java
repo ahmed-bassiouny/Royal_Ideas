@@ -2,46 +2,34 @@ package com.royalideas.fragments;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.royalideas.Downloaded;
-import com.royalideas.MainActivity;
 import com.royalideas.R;
-import com.royalideas.adapter.HeightAdapterSection;
-import com.royalideas.adapter.ProductsCategories;
-import com.royalideas.adapter.WidthAdapterSection;
+import com.royalideas.adapter.Product;
+import com.royalideas.adapter.WidthAdapterProduct;
+
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Sections extends Fragment implements Downloaded {
+public class ProductFragment extends Fragment {
+
 
     ViewPager mViewPager;
     TabLayout tabLayout;
     SectionsPagerAdapter sectionsPagerAdapter;
 
-    static ArrayList<ProductsCategories> ProductsCategoriesList;
-    static String TAG="tag now now";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,90 +37,58 @@ public class Sections extends Fragment implements Downloaded {
         View view= inflater.inflate(R.layout.fragment_sections, container, false);
         mViewPager = (ViewPager) view.findViewById(R.id.container);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        ProductsCategoriesList=new ArrayList<>();
-
+        sectionsPagerAdapter=new SectionsPagerAdapter(getFragmentManager());
+        mViewPager.setAdapter(sectionsPagerAdapter);
+        tabLayout.setupWithViewPager(mViewPager);
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        ProductsCategories productsCategories = new ProductsCategories();
-        productsCategories.getProductsCategories(getActivity(),this);
+        Product products = new Product();
+        products.getMultiProducts(getActivity(),this);
     }
-
-    @Override
-    public void ProductsCategories(ArrayList<ProductsCategories> ProductsCategoriesList) {
-        this.ProductsCategoriesList=ProductsCategoriesList;
-        sectionsPagerAdapter=new SectionsPagerAdapter(getFragmentManager());
-        mViewPager.setAdapter(sectionsPagerAdapter);
-        tabLayout.setupWithViewPager(mViewPager);
-
-    }
-
 
     public static class PlaceholderFragment extends Fragment{
         RecyclerView recyclerView;
-        HeightAdapterSection heightAdapterSection;
-        WidthAdapterSection widthAdapterSection;
-
-        //WidthAdapterSection adapter;
-        //int count =0;
+        //HeightAdapterSection heightAdapterSection;
+        //WidthAdapterSection widthAdapterSection;
+        WidthAdapterProduct widthAdapterProduct;
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt("mynumber", sectionNumber);
-            //Log.i(TAG, sectionNumber+"");
+
             fragment.setArguments(args);
             return fragment;
-        }
-
-        @Override
-        public void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            //Log.i(TAG, count+"");
-            //count++;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tab, container, false);
-            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            //textView.setText(
-            //       getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            //Log.i("**** info ****", getArguments().getInt("mynumber")+"");
+
             recyclerView = (RecyclerView) rootView.findViewById(R.id.list);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setHasFixedSize(true);
-            Log.i(TAG, getArguments().getInt("mynumber")+"");
-            if(getArguments().getInt("mynumber")==1) {
-                Toast.makeText(getActivity(), ProductsCategoriesList.size()+"d", Toast.LENGTH_SHORT).show();
-                widthAdapterSection = new WidthAdapterSection(ProductsCategoriesList,getActivity());
+            ArrayList<String>arr = new ArrayList<>();
+            arr.add("first");
+            arr.add("secomd");
+            widthAdapterProduct= new WidthAdapterProduct(arr,getActivity());
+            recyclerView.setAdapter(widthAdapterProduct);
+            /*if(getArguments().getInt("mynumber")==1) {
+                widthAdapterSection = new WidthAdapterSection(ProductsCategoriesList,getContext());
                 recyclerView.setAdapter(widthAdapterSection);
             }else if(getArguments().getInt("mynumber")==2)
-                {
-                heightAdapterSection = new HeightAdapterSection(ProductsCategoriesList,getActivity());
+            {
+                heightAdapterSection = new HeightAdapterSection(ProductsCategoriesList,getContext());
                 recyclerView.setAdapter(heightAdapterSection);
 
-        }
-        return rootView;
-        }
-
-        @Override
-        public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-            super.onActivityCreated(savedInstanceState);
-
+            }*/
+            return rootView;
         }
 
-       /* @Override
-        public void ProductsCategories(ArrayList<ProductsCategories> ProductsCategoriesList) {
-            //adapter = new WidthAdapterSection(getContext(),ProductsCategoriesList);
-            this.ProductsCategoriesList=ProductsCategoriesList;
-            heightAdapterSection = new HeightAdapterSection(ProductsCategoriesList,getContext());
-            recyclerView.setAdapter(heightAdapterSection);
-        }
-*/
 
     }
 
@@ -166,4 +122,5 @@ public class Sections extends Fragment implements Downloaded {
             return null;
         }
     }
+
 }
