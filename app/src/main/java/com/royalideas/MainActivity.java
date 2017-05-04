@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -42,6 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.menu)
     public void menu(){
-        drawlayoutmain.openDrawer(View.TEXT_ALIGNMENT_VIEW_START);
+        drawlayoutmain.openDrawer(Gravity.START);
     }
 }
