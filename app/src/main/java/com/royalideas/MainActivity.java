@@ -1,19 +1,14 @@
 package com.royalideas;
 
 import android.support.v7.app.AppCompatActivity;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.royalideas.fragments.Sections;
+import com.royalideas.fragments.SectionsFragment;
 import com.royalideas.helper.Utils;
 
 import butterknife.ButterKnife;
@@ -24,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawlayoutmain;
     NavigationView navigationView;
+    public static TextView titleToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
         // init navagitionDrawer
         drawlayoutmain=(DrawerLayout)findViewById(R.id.drawlayoutmain);
         navigationView= (NavigationView) findViewById(R.id.navigation);
+        titleToolbar=(TextView)toolbar.findViewById(R.id.title);
         navigationView.setItemIconTintList(null);
         ButterKnife.bind(this);
-        Utils.goToFragment(this,new Sections(),null,null);
+        Utils.goToFragment(this,new SectionsFragment(),null,null);
     }
 
     @OnClick(R.id.menu)

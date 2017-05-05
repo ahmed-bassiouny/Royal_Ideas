@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:id="@+id/frame"
+    android:id="@+id/row"
     android:layout_height="200dp">
     <ImageView
         android:layout_width="match_parent"
@@ -10,17 +10,19 @@
         android:id="@+id/imageproduct"/>
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_gravity="bottom|start"
-        android:layout_marginBottom="10dp"
-        android:gravity="end|start"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/framelinearlayout"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="match_parent"
             android:layout_gravity="start"
             android:gravity="center"
+            android:padding="5dp"
             android:textSize="20dp"
+            android:textColor="@color/fontcolor"
             android:id="@+id/nameproduct"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="Wecome"/>
     </LinearLayout>
-</FrameLayout>
+</RelativeLayout>

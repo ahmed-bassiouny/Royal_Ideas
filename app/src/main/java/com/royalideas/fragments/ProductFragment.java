@@ -16,10 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.royalideas.Downloaded;
+import com.royalideas.MainActivity;
 import com.royalideas.R;
 import com.royalideas.adapter.Product;
 import com.royalideas.adapter.ProductsCategories;
 import com.royalideas.adapter.AdapterProduct;
+import com.royalideas.adapter.SectionsPagerAdapter;
 import com.royalideas.helper.Utils;
 
 
@@ -57,6 +59,7 @@ public class ProductFragment extends Fragment implements Downloaded{
         Utils.runProgressDialog(getActivity());
         Product products = new Product();
         products.getMultiProducts(getActivity(),this,getArguments().getString("ID"));
+        MainActivity.titleToolbar.setText(getResources().getString(R.string.products));
     }
 
     @Override
@@ -69,7 +72,7 @@ public class ProductFragment extends Fragment implements Downloaded{
         this.MultiProductsList=MultiProductsList;
         if(MultiProductsList.size()==0)
             Toast.makeText(getActivity(), "عفوا ﻻ يوجد منتجات", Toast.LENGTH_SHORT).show();
-        sectionsPagerAdapter=new SectionsPagerAdapter(getFragmentManager());
+        sectionsPagerAdapter=new SectionsPagerAdapter(getChildFragmentManager(),getContext(),false);
         mViewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
         Utils.dismissProgressDialog();
@@ -77,8 +80,6 @@ public class ProductFragment extends Fragment implements Downloaded{
 
     public static class PlaceholderFragment extends Fragment{
         RecyclerView recyclerView;
-        //HeightAdapterSection heightAdapterSection;
-        //WidthAdapterSection widthAdapterSection;
         AdapterProduct widthAdapterProduct,heightAdapterProduct;
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
@@ -112,37 +113,6 @@ public class ProductFragment extends Fragment implements Downloaded{
         }
 
 
-    }
-
-    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 2;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return getResources().getString(R.string.height);
-                case 1:
-                    return getResources().getString(R.string.width);
-            }
-            return null;
-        }
     }
 
 }
