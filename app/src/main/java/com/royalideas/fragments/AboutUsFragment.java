@@ -19,6 +19,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.royalideas.Downloaded;
+import com.royalideas.MainActivity;
 import com.royalideas.R;
 import com.royalideas.adapter.MySingleton;
 import com.royalideas.adapter.Product;
@@ -49,6 +50,7 @@ public class AboutUsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        MainActivity.titleToolbar.setText(getResources().getString(R.string.About));
         Utils.runProgressDialog(getContext());
         getcontent();
     }

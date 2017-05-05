@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.royalideas.MainActivity;
 import com.royalideas.R;
 import com.royalideas.adapter.AdapterBranch;
 import com.royalideas.adapter.Branch;
@@ -58,6 +59,7 @@ public class BranchFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        MainActivity.titleToolbar.setText(getResources().getString(R.string.branch));
         Utils.runProgressDialog(getActivity());
         getBranches();
     }
