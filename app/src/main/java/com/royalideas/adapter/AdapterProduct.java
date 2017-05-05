@@ -41,7 +41,10 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.CutomVie
         holder.codeproduct.setText(MultiProductsList.get(position).t2+"كود المنتج");
         if(MultiProductsList.get(position).status.equals("نعم"))
         holder.status.setText("متاح");
-        holder.qar.setText("QAR - "+MultiProductsList.get(position).t1);
+        if(MultiProductsList.get(position).t1.equals("حسب الطلب"))
+            holder.qar.setText(MultiProductsList.get(position).t1);
+        else
+            holder.qar.setText("QAR - "+MultiProductsList.get(position).t1);
         Picasso.with(context).load(MultiProductsList.get(position).image.replace("http","https")).fit().placeholder(R.drawable.header).into(holder.imageproduct);
 
     }

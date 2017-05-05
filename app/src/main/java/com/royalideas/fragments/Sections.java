@@ -27,6 +27,7 @@ import com.royalideas.adapter.HeightAdapterSection;
 import com.royalideas.adapter.Product;
 import com.royalideas.adapter.ProductsCategories;
 import com.royalideas.adapter.WidthAdapterSection;
+import com.royalideas.helper.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +42,7 @@ public class Sections extends Fragment implements Downloaded {
     TabLayout tabLayout;
     SectionsPagerAdapter sectionsPagerAdapter;
 
-    static ArrayList<ProductsCategories> ProductsCategoriesList;
+    static ArrayList<ProductsCategories> ProductsCategoriesList=new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class Sections extends Fragment implements Downloaded {
         View view= inflater.inflate(R.layout.fragment_sections, container, false);
         mViewPager = (ViewPager) view.findViewById(R.id.container);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        ProductsCategoriesList=new ArrayList<>();
+
 
         return view;
     }
@@ -57,6 +58,7 @@ public class Sections extends Fragment implements Downloaded {
     @Override
     public void onStart() {
         super.onStart();
+        Utils.runProgressDialog(getActivity());
         ProductsCategories productsCategories = new ProductsCategories();
         productsCategories.getProductsCategories(getActivity(),this);
     }
@@ -64,9 +66,10 @@ public class Sections extends Fragment implements Downloaded {
     @Override
     public void ProductsCategories(ArrayList<ProductsCategories> ProductsCategoriesList) {
         this.ProductsCategoriesList=ProductsCategoriesList;
-        sectionsPagerAdapter=new SectionsPagerAdapter(getFragmentManager());
+        sectionsPagerAdapter=new SectionsPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
+        Utils.dismissProgressDialog();
 
     }
 

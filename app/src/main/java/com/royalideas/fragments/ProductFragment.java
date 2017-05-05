@@ -20,6 +20,7 @@ import com.royalideas.R;
 import com.royalideas.adapter.Product;
 import com.royalideas.adapter.ProductsCategories;
 import com.royalideas.adapter.AdapterProduct;
+import com.royalideas.helper.Utils;
 
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class ProductFragment extends Fragment implements Downloaded{
     @Override
     public void onStart() {
         super.onStart();
+        Utils.runProgressDialog(getActivity());
         Product products = new Product();
         products.getMultiProducts(getActivity(),this,getArguments().getString("ID"));
     }
@@ -70,6 +72,7 @@ public class ProductFragment extends Fragment implements Downloaded{
         sectionsPagerAdapter=new SectionsPagerAdapter(getFragmentManager());
         mViewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
+        Utils.dismissProgressDialog();
     }
 
     public static class PlaceholderFragment extends Fragment{

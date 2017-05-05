@@ -34,6 +34,7 @@ public class HeightAdapterSection extends RecyclerView.Adapter<HeightAdapterSect
     public HeightAdapterSection(ArrayList<ProductsCategories> myarraylist,FragmentActivity fragmentActivity){
         this.myarraylist=myarraylist;
         this.fragmentActivity=fragmentActivity;
+        bundle=new Bundle();
     }
     @Override
     public HeightAdapterSection.CutomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

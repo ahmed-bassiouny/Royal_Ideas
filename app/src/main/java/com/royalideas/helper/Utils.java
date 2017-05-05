@@ -1,5 +1,7 @@
 package com.royalideas.helper;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ import com.royalideas.R;
 
 public class Utils {
 
+    static ProgressDialog progressDialog;
     public static void goToFragment(FragmentActivity fragmentActivity, Fragment fragment, @Nullable String tag, @Nullable Bundle bundle){
         FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -27,5 +30,14 @@ public class Utils {
         if(tag !=null)
             fragmentTransaction.addToBackStack(tag);
         fragmentTransaction.commit();
+    }
+    public static void runProgressDialog(Context context){
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setTitle("برجاء الإنتظار");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+    public static void dismissProgressDialog(){
+        progressDialog.dismiss();
     }
 }
