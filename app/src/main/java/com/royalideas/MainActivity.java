@@ -1,13 +1,16 @@
 package com.royalideas;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.royalideas.fragments.AboutUs;
 import com.royalideas.fragments.SectionsFragment;
 import com.royalideas.helper.Utils;
 
@@ -34,8 +37,26 @@ public class MainActivity extends AppCompatActivity {
         navigationView= (NavigationView) findViewById(R.id.navigation);
         titleToolbar=(TextView)toolbar.findViewById(R.id.title);
         navigationView.setItemIconTintList(null);
+
         ButterKnife.bind(this);
         Utils.goToFragment(this,new SectionsFragment(),null,null);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.main:
+                        Utils.goToFragment(MainActivity.this,new SectionsFragment(),null,null);
+                        break;
+                    case R.id.about:
+                        Utils.goToFragment(MainActivity.this,new AboutUs(),"Back To Sections",null);
+                        break;
+                }
+                item.setCheckable(true);
+                drawlayoutmain.closeDrawers();
+                return true;
+            }
+        });
     }
 
     @OnClick(R.id.menu)
