@@ -24,6 +24,7 @@ import com.royalideas.Downloaded;
 import com.royalideas.MainActivity;
 import com.royalideas.R;
 import com.royalideas.adapter.HeightAdapterSection;
+import com.royalideas.adapter.Product;
 import com.royalideas.adapter.ProductsCategories;
 import com.royalideas.adapter.WidthAdapterSection;
 
@@ -41,7 +42,6 @@ public class Sections extends Fragment implements Downloaded {
     SectionsPagerAdapter sectionsPagerAdapter;
 
     static ArrayList<ProductsCategories> ProductsCategoriesList;
-    static String TAG="tag now now";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,6 +67,11 @@ public class Sections extends Fragment implements Downloaded {
         sectionsPagerAdapter=new SectionsPagerAdapter(getFragmentManager());
         mViewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
+
+    }
+
+    @Override
+    public void MultiProducts(ArrayList<Product> MultiProductsList) {
 
     }
 
@@ -105,17 +110,14 @@ public class Sections extends Fragment implements Downloaded {
             recyclerView = (RecyclerView) rootView.findViewById(R.id.list);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setHasFixedSize(true);
-            Log.i(TAG, getArguments().getInt("mynumber")+"");
-            if(getArguments().getInt("mynumber")==1) {
-                Toast.makeText(getActivity(), ProductsCategoriesList.size()+"d", Toast.LENGTH_SHORT).show();
+            if(getArguments().getInt("mynumber")==1)
+            {
                 widthAdapterSection = new WidthAdapterSection(ProductsCategoriesList,getActivity());
                 recyclerView.setAdapter(widthAdapterSection);
-            }else if(getArguments().getInt("mynumber")==2)
-                {
+            }else if(getArguments().getInt("mynumber")==2) {
                 heightAdapterSection = new HeightAdapterSection(ProductsCategoriesList,getActivity());
                 recyclerView.setAdapter(heightAdapterSection);
-
-        }
+            }
         return rootView;
         }
 
@@ -125,14 +127,6 @@ public class Sections extends Fragment implements Downloaded {
 
         }
 
-       /* @Override
-        public void ProductsCategories(ArrayList<ProductsCategories> ProductsCategoriesList) {
-            //adapter = new WidthAdapterSection(getContext(),ProductsCategoriesList);
-            this.ProductsCategoriesList=ProductsCategoriesList;
-            heightAdapterSection = new HeightAdapterSection(ProductsCategoriesList,getContext());
-            recyclerView.setAdapter(heightAdapterSection);
-        }
-*/
 
     }
 

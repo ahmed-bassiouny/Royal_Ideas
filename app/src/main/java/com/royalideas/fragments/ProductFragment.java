@@ -2,6 +2,7 @@ package com.royalideas.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,10 +13,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.royalideas.Downloaded;
 import com.royalideas.R;
 import com.royalideas.adapter.Product;
-import com.royalideas.adapter.WidthAdapterProduct;
+import com.royalideas.adapter.ProductsCategories;
+import com.royalideas.adapter.AdapterProduct;
 
 
 import java.util.ArrayList;
@@ -23,13 +27,13 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductFragment extends Fragment {
+public class ProductFragment extends Fragment implements Downloaded{
 
 
     ViewPager mViewPager;
     TabLayout tabLayout;
     SectionsPagerAdapter sectionsPagerAdapter;
-
+    static ArrayList<Product> MultiProductsList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,24 +41,42 @@ public class ProductFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_sections, container, false);
         mViewPager = (ViewPager) view.findViewById(R.id.container);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        sectionsPagerAdapter=new SectionsPagerAdapter(getFragmentManager());
-        mViewPager.setAdapter(sectionsPagerAdapter);
-        tabLayout.setupWithViewPager(mViewPager);
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MultiProductsList=new ArrayList<>();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         Product products = new Product();
-        products.getMultiProducts(getActivity(),this);
+        products.getMultiProducts(getActivity(),this,getArguments().getString("ID"));
+    }
+
+    @Override
+    public void ProductsCategories(ArrayList<ProductsCategories> ProductsCategoriesList) {
+
+    }
+
+    @Override
+    public void MultiProducts(ArrayList<Product> MultiProductsList) {
+        this.MultiProductsList=MultiProductsList;
+        if(MultiProductsList.size()==0)
+            Toast.makeText(getActivity(), "عفوا ﻻ يوجد منتجات", Toast.LENGTH_SHORT).show();
+        sectionsPagerAdapter=new SectionsPagerAdapter(getFragmentManager());
+        mViewPager.setAdapter(sectionsPagerAdapter);
+        tabLayout.setupWithViewPager(mViewPager);
     }
 
     public static class PlaceholderFragment extends Fragment{
         RecyclerView recyclerView;
         //HeightAdapterSection heightAdapterSection;
         //WidthAdapterSection widthAdapterSection;
-        WidthAdapterProduct widthAdapterProduct;
+        AdapterProduct widthAdapterProduct,heightAdapterProduct;
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -72,20 +94,17 @@ public class ProductFragment extends Fragment {
             recyclerView = (RecyclerView) rootView.findViewById(R.id.list);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setHasFixedSize(true);
-            ArrayList<String>arr = new ArrayList<>();
-            arr.add("first");
-            arr.add("secomd");
-            widthAdapterProduct= new WidthAdapterProduct(arr,getActivity());
-            recyclerView.setAdapter(widthAdapterProduct);
-            /*if(getArguments().getInt("mynumber")==1) {
-                widthAdapterSection = new WidthAdapterSection(ProductsCategoriesList,getContext());
-                recyclerView.setAdapter(widthAdapterSection);
+
+
+            if(getArguments().getInt("mynumber")==1) {
+                widthAdapterProduct = new AdapterProduct(MultiProductsList,getContext(),R.layout.product_item_width);
+                recyclerView.setAdapter(widthAdapterProduct);
             }else if(getArguments().getInt("mynumber")==2)
             {
-                heightAdapterSection = new HeightAdapterSection(ProductsCategoriesList,getContext());
-                recyclerView.setAdapter(heightAdapterSection);
+                heightAdapterProduct = new AdapterProduct(MultiProductsList,getContext(),R.layout.product_item_height);
+                recyclerView.setAdapter(heightAdapterProduct);
 
-            }*/
+            }
             return rootView;
         }
 

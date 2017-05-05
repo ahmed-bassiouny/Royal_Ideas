@@ -1,60 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    card_view:cardCornerRadius="4dp">
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="10dp">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:weightSum="2"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/framecardview"
+        android:padding="10dp">
+
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
             android:id="@+id/imageproduct"
-            android:src="@drawable/header"/>
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:src="@drawable/header"
+            android:padding="5dp"
+            android:layout_gravity="start"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:weightSum="3"
+            android:layout_margin="10dp">
+
             <TextView
+                android:id="@+id/nameproduct"
                 android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:id="@+id/nameproduct"/>
+                android:gravity="center" />
+
             <TextView
+                android:id="@+id/codeproduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:id="@+id/codeproduct"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorAccent" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:weightSum="2"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_height="wrap_content">
+                android:weightSum="2">
+
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:text="wwww"
-                    android:layout_margin="10dp"
                     android:id="@+id/qar"
-                    android:background="@drawable/roundedbuttonpure"
-                    android:layout_height="wrap_content" />
-                <Button
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="wwww"
+                    android:textColor="@color/fontcolor"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundedbuttonpure"
+                    android:text="wwww" />
+
+                <Button
                     android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/fontcolor"
+                    android:layout_weight="1"
                     android:background="@drawable/roundedbutton"
-                    android:layout_height="wrap_content" />
+                    android:text="wwww" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
+</FrameLayout>

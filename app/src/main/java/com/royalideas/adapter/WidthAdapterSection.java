@@ -1,5 +1,6 @@
 package com.royalideas.adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,10 +22,11 @@ import java.util.ArrayList;
 public class WidthAdapterSection extends RecyclerView.Adapter<WidthAdapterSection.CutomViewHolder> {
     ArrayList<ProductsCategories> myarraylist;
     FragmentActivity fragmentActivity;
-    // constructor to send data and set it global
+    Bundle bundle;
     public WidthAdapterSection(ArrayList<ProductsCategories> myarraylist,FragmentActivity fragmentActivity){
         this.myarraylist=myarraylist;
         this.fragmentActivity=fragmentActivity;
+        bundle=new Bundle();
     }
     @Override
     public WidthAdapterSection.CutomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,10 +39,12 @@ public class WidthAdapterSection extends RecyclerView.Adapter<WidthAdapterSectio
     public void onBindViewHolder(WidthAdapterSection.CutomViewHolder holder, int position) {
 
         holder.nameproduct.setText(myarraylist.get(position).name);
+        final String id =myarraylist.get(position).id+"";
         holder.row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.goToFragment(fragmentActivity,new ProductFragment(),"Back To Section",null);
+                bundle.putString("ID",id);
+                Utils.goToFragment(fragmentActivity,new ProductFragment(),"Back To Section",bundle);
             }
         });
     }

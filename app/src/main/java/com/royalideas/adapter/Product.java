@@ -15,12 +15,10 @@ import com.google.gson.reflect.TypeToken;
 import com.royalideas.Downloaded;
 import com.royalideas.helper.Information;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ahmed on 04/05/17.
@@ -49,22 +47,22 @@ public class Product {
     @Expose
     public String status;
 
-    public void getMultiProducts(Context context, Fragment fragment) {
-        //final Downloaded downloaded = (Downloaded)fragment;
-        //listType = new TypeToken<List<ProductsCategories>>() {}.getType();
+    public void getMultiProducts(Context context, Fragment fragment,String id) {
+        final Downloaded downloaded = (Downloaded) fragment;
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, Information.MultiProducts, null, new Response.Listener<JSONObject>() {
+                (Request.Method.GET, Information.MultiProducts+id, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         Gson gson = new Gson();
-
+                        ArrayList<Product> MultiProductsList=new ArrayList<>();
                         try {
-                            ArrayList<Product> MultiProductsList = gson.fromJson(response.getJSONObject("result").getJSONArray("data").toString(), new TypeToken<ArrayList<Product>>(){}.getType());
-                            Log.i("ahmed", MultiProductsList.get(0).id+"");
+                             MultiProductsList = gson.fromJson(response.getJSONObject("result").getJSONArray("data").toString(), new TypeToken<ArrayList<Product>>() {
+                            }.getType());
                         } catch (JSONException e) {
                             Log.i("error log", e.getMessage());
                         }
+                        downloaded.MultiProducts(MultiProductsList);
                     }
                 }, new Response.ErrorListener() {
 
