@@ -10,7 +10,8 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.royalideas.fragments.AboutUs;
+import com.royalideas.fragments.AboutUsFragment;
+import com.royalideas.fragments.BranchFragment;
 import com.royalideas.fragments.SectionsFragment;
 import com.royalideas.helper.Utils;
 
@@ -49,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
                         Utils.goToFragment(MainActivity.this,new SectionsFragment(),null,null);
                         break;
                     case R.id.about:
-                        Utils.goToFragment(MainActivity.this,new AboutUs(),"Back To Sections",null);
+                        Utils.goToFragment(MainActivity.this,new AboutUsFragment(),"Back To Sections",null);
+                        break;
+                    case R.id.branch:
+                        Utils.goToFragment(MainActivity.this,new BranchFragment(),"Back To Sections",null);
                         break;
                 }
                 item.setCheckable(true);

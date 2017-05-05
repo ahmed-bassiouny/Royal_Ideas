@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:weightSum="3"
     android:orientation="vertical"
-    tools:context="com.royalideas.fragments.AboutUs">
+    tools:context="com.royalideas.fragments.AboutUsFragment">
 
     <ImageView
         android:layout_width="match_parent"

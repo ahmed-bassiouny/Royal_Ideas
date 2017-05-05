@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AboutUs extends Fragment {
+public class AboutUsFragment extends Fragment {
     @BindView(R.id.aboutcontent)
     TextView aboutcontent;
     @Override
