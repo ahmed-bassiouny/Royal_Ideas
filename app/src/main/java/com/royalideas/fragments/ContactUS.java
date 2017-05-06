@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +26,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.BindViews;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -34,11 +36,12 @@ public class ContactUS extends Fragment {
 
     @BindViews({R.id.name,R.id.email,R.id.subject,R.id.message})
     EditText[] editTexts;
+    boolean success=true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view=inflater.inflate(R.layout.fragment_contact_u, container, false);
+        ButterKnife.bind(this,view);
         return view;
     }
 
@@ -58,10 +61,14 @@ public class ContactUS extends Fragment {
     }
 
     private void sendData(){
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Information.ContactUs, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("a*a*a", response.toString());
+                if(response.toString().equals("success")&&success){
+                    Toast.makeText(getActivity(), " Thanks ", Toast.LENGTH_SHORT).show();
+                    success=false;
+                }
             }
         }, new Response.ErrorListener() {
             @Override

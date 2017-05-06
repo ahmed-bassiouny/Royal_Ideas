@@ -42,14 +42,16 @@
         android:orientation="vertical"
         android:layout_weight="1">
         <TextView
-            android:layout_width="368dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:gravity="center"
+            android:padding="10dp"
             android:textColor="@color/colorPrimary"
             android:id="@+id/nameproduct"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="32dp"
+            android:background="@drawable/framecardview"
             android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="8dp"

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.royalideas.fragments.AboutUsFragment;
 import com.royalideas.fragments.BranchFragment;
+import com.royalideas.fragments.ContactUS;
 import com.royalideas.fragments.SectionsFragment;
 import com.royalideas.helper.Utils;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawlayoutmain;
     NavigationView navigationView;
     public static TextView titleToolbar;
+    int flag=R.id.main;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView= (NavigationView) findViewById(R.id.navigation);
         titleToolbar=(TextView)toolbar.findViewById(R.id.title);
         navigationView.setItemIconTintList(null);
-
         ButterKnife.bind(this);
         Utils.goToFragment(this,new SectionsFragment(),null,null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -47,15 +48,23 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.main:
+                        if(flag!=R.id.main)
                         Utils.goToFragment(MainActivity.this,new SectionsFragment(),null,null);
                         break;
                     case R.id.about:
+                        if(flag!=R.id.about)
                         Utils.goToFragment(MainActivity.this,new AboutUsFragment(),"Back To Sections",null);
                         break;
                     case R.id.branch:
+                        if(flag!=R.id.branch)
                         Utils.goToFragment(MainActivity.this,new BranchFragment(),"Back To Sections",null);
                         break;
+                    case R.id.contactus:
+                        if(flag!=R.id.contactus)
+                        Utils.goToFragment(MainActivity.this,new ContactUS(),"Back To Sections",null);
+                        break;
                 }
+                flag=item.getItemId();
                 item.setCheckable(true);
                 drawlayoutmain.closeDrawers();
                 return true;
@@ -66,5 +75,11 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.menu)
     public void menu(){
         drawlayoutmain.openDrawer(Gravity.START);
+    }
+    @OnClick(R.id.contactus)
+    public void contactus(){
+        if(flag!=R.id.contactus)
+        Utils.goToFragment(MainActivity.this,new ContactUS(),"Back To Sections",null);
+        flag=R.id.contactus;
     }
 }
