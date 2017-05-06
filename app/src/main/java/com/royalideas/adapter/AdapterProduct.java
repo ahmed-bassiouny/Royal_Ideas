@@ -52,7 +52,10 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.CutomVie
             holder.qar.setText(MultiProductsList.get(position).t1);
         else
             holder.qar.setText("QAR - "+MultiProductsList.get(position).t1);
-        Picasso.with(fragmentActivity).load(MultiProductsList.get(position).image.replace("http","https")).resize(350,350).placeholder(R.drawable.animation).into(holder.imageproduct);
+        if(layout==R.layout.product_item_height)
+            Picasso.with(fragmentActivity).load(MultiProductsList.get(position).image.replace("http","https")).resize(1000,1000).placeholder(R.drawable.animation).into(holder.imageproduct);
+        else
+            Picasso.with(fragmentActivity).load(MultiProductsList.get(position).image.replace("http","https")).resize(350,600).placeholder(R.drawable.animation).into(holder.imageproduct);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

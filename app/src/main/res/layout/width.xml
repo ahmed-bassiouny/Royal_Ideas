@@ -25,5 +25,11 @@
             android:padding="10dp"
             android:layout_alignParentEnd="true"
             android:src="@mipmap/left" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:paddingTop="15dp"
+            android:layout_alignBottom="@+id/nameproduct"
+            android:background="#dededf" />
     </RelativeLayout>
 </FrameLayout>
