@@ -101,11 +101,11 @@ public class ProductFragment extends Fragment implements Downloaded{
 
 
             if(getArguments().getInt("mynumber")==1) {
-                widthAdapterProduct = new AdapterProduct(MultiProductsList,getContext(),R.layout.product_item_width);
+                widthAdapterProduct = new AdapterProduct(MultiProductsList,getActivity(),R.layout.product_item_width);
                 recyclerView.setAdapter(widthAdapterProduct);
             }else if(getArguments().getInt("mynumber")==2)
             {
-                heightAdapterProduct = new AdapterProduct(MultiProductsList,getContext(),R.layout.product_item_height);
+                heightAdapterProduct = new AdapterProduct(MultiProductsList,getActivity(),R.layout.product_item_height);
                 recyclerView.setAdapter(heightAdapterProduct);
 
             }

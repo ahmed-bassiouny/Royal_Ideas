@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_gravity="center"
     android:padding="10dp"
+    android:background="@drawable/framecardview"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -16,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/framecardview"
         android:padding="20dp"
         android:weightSum="4">
 
@@ -25,7 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/imageproduct"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/header" />
 
         <LinearLayout
             android:layout_width="match_parent"

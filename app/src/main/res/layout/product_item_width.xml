@@ -17,12 +17,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/framecardview"
+        android:weightSum="3"
         android:padding="10dp">
 
         <ImageView
             android:id="@+id/imageproduct"
-            android:layout_width="100dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:src="@drawable/header"
             android:padding="5dp"
             android:layout_gravity="start"/>
@@ -31,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_weight="1"
             android:weightSum="3"
             android:layout_margin="10dp">
 

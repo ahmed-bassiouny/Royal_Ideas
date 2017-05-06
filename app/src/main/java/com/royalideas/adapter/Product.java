@@ -18,13 +18,14 @@ import com.royalideas.helper.Information;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by ahmed on 04/05/17.
  */
 
-public class Product {
+public class Product implements Serializable {
     @SerializedName("id")
     @Expose
     public Integer id;

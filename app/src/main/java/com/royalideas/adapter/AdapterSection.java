@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,7 +46,7 @@ public class AdapterSection extends RecyclerView.Adapter<AdapterSection.CutomVie
         holder.nameproduct.setText(myarraylist.get(position).name);
         final String id =myarraylist.get(position).id+"";
         if(layout==R.layout.height)
-        Picasso.with(fragmentActivity).load(myarraylist.get(position).image.replace("http","https")).fit().placeholder(R.drawable.header).into(holder.imageproduct);
+        Picasso.with(fragmentActivity).load(myarraylist.get(position).image.replace("http","https")).resize(1000,1000).placeholder(R.drawable.animation).into(holder.imageproduct);
         holder.row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,11 +63,11 @@ public class AdapterSection extends RecyclerView.Adapter<AdapterSection.CutomVie
     class CutomViewHolder extends RecyclerView.ViewHolder{
         TextView nameproduct;
         ImageView imageproduct;
-        RelativeLayout row;
+        FrameLayout row;
         public CutomViewHolder(View view){
             super(view);
             this.nameproduct=(TextView)view.findViewById(R.id.nameproduct);
-            this.row=(RelativeLayout)view.findViewById(R.id.row);
+            this.row=(FrameLayout)view.findViewById(R.id.row);
             this.imageproduct=(ImageView)view.findViewById(R.id.imageproduct);
         }
     }
