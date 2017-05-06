@@ -9,4 +9,5 @@ public class Information {
     public static String MultiProducts ="http://www.ri.gallery/wp-json/wp/v2/products_id?product_id=";
     public static String AboutUs="http://www.ri.gallery/wp-json/wp/v2/about_us";
     public static String Branch="http://www.ri.gallery/wp-json/wp/v2/branches";
+    public static String ContactUs="http://www.ri.gallery/wp-json/wp/v2/contact";
 }

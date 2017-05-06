@@ -5,8 +5,13 @@
     <string name="branch">فروعنا</string>
     <string name="contactus">اتصل بنا</string>
     <string name="products">المنتجات</string>
+    <string name="product">المنتج</string>
 
-
+    <string name="name">الإسم</string>
+    <string name="subject">عنوان الرسالة</string>
+    <string name="message">نص الرسالة</string>
+    <string name="send"> إرسال</string>
+    <string name="email">البريد الإلكترونى</string>
     <string name="height">طولى</string>
     <string name="width">عرضى</string>
 

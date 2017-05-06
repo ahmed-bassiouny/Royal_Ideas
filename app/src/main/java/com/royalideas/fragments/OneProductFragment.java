@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.royalideas.MainActivity;
 import com.royalideas.R;
 import com.royalideas.adapter.Product;
 import com.squareup.picasso.Picasso;
@@ -46,6 +47,7 @@ public class OneProductFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        MainActivity.titleToolbar.setText(getResources().getString(R.string.product));
         textViews[0].setText(product.status);
         textViews[1].setText(product.t1);
         textViews[2].setText(product.title);
